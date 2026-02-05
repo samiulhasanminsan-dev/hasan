@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Respectful Apology</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to right, #cfd9df, #e2ebf0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Card */
+.box {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 520px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: #444;
+}
+
+p {
+  font-size: 17px;
+  color: #333;
+  line-height: 1.6;
+  min-height: 180px;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  color: rgba(255, 105, 135, 0.7);
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>I'm Truly Sorry</h1>
+  <p id="text"></p>
+  <div class="footer">— From someone who truly cares</div>
+</div>
+
+<script>
+/* Typing effect */
+const message = `I know I made a mistake and I hurt you.
+
+I am not writing this to force you or pressure you in any way.
+I only want to say that I respect your feelings and your space.
+
+You are important to me, and I regret my behavior deeply.
+If you ever feel ready, I would be grateful for one chance to talk and say sorry properly.
+
+No matter what you decide, I wish you peace and happiness.`;
+
+let i = 0;
+const speed = 40;
+function typeWriter() {
+  if (i < message.length) {
+    document.getElementById("text").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+typeWriter();
+
+/* Heart animation */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+setInterval(createHeart, 800);
+</script>
+
+</body>
+</html>
